@@ -1,0 +1,409 @@
+2025-08-30 09:17:12 - chamber_app.utils.logging_config - INFO - Logging configured - Level: INFO, File: C:\Users\jessneug\onix#3\logs\chamber_app.log
+2025-08-30 09:17:12 - __main__ - INFO - Starting Chamber Management Application
+2025-08-30 09:17:12 - __main__ - INFO - Version: 1.0.0
+2025-08-30 09:17:12 - chamber_app.data.database - INFO - Database manager initialized with path: C:\Users\jessneug\onix#3\data\chambers.db
+2025-08-30 09:17:12 - chamber_app.core.application - INFO - Chamber Application initialized | app_version=1.0.0
+2025-08-30 09:17:12 - chamber_app.core.application - INFO - Initializing application components | app_version=1.0.0
+2025-08-30 09:17:12 - chamber_app.data.database - INFO - Database tables created/verified
+2025-08-30 09:17:12 - chamber_app.data.database - INFO - Database initialized successfully
+2025-08-30 09:17:12 - chamber_app.core.application - INFO - Loaded 0 chambers from database | app_version=1.0.0
+2025-08-30 09:17:12 - chamber_app.sdk.telemetry_manager - INFO - Initialized 2 telemetry sources
+2025-08-30 09:17:12 - chamber_app.network.multi_user - INFO - MultiUserManager initialized on port 8765
+2025-08-30 09:17:12 - chamber_app.core.application - INFO - Created 3 default chambers | app_version=1.0.0
+2025-08-30 09:17:12 - chamber_app.core.application - INFO - Application components initialized successfully | app_version=1.0.0
+2025-08-30 09:17:12 - chamber_app.core.application - INFO - Background services started | app_version=1.0.0
+2025-08-30 09:17:12 - chamber_app.network.multi_user - INFO - Multi-user manager started
+2025-08-30 09:17:12 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-08-30 09:17:12 - websockets.server - INFO - server listening on [::1]:8765
+2025-08-30 09:17:12 - chamber_app.network.multi_user - INFO - WebSocket server started on port 8765
+2025-08-30 09:17:13 - chamber_app.ui.main_window - INFO - Main window initialized
+2025-08-30 09:17:13 - chamber_app.ui.main_window - INFO - Starting main UI loop
+2025-08-30 09:17:18 - chamber_app.ui.main_window - INFO - Switched to panel: overview
+2025-08-30 09:17:28 - chamber_app.ui.main_window - INFO - Switched to panel: tvac
+2025-08-30 09:17:37 - chamber_app.ui.main_window - INFO - Switched to panel: overview
+2025-08-30 09:17:41 - chamber_app.ui.main_window - INFO - Switched to panel: overview
+2025-08-30 09:17:42 - chamber_app.ui.main_window - INFO - Switched to panel: overview
+2025-08-30 09:17:42 - chamber_app.ui.main_window - INFO - Switched to panel: tvac
+2025-08-30 09:17:43 - chamber_app.ui.main_window - INFO - Switched to panel: hass
+2025-08-30 09:17:44 - chamber_app.ui.main_window - INFO - Switched to panel: thermal
+2025-08-30 09:17:45 - chamber_app.ui.main_window - INFO - Switched to panel: work_requests
+2025-08-30 09:17:45 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 09:17:58 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 09:18:01 - chamber_app.ui.main_window - INFO - Switched to panel: work_requests
+2025-08-30 09:18:02 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 09:18:03 - chamber_app.ui.main_window - INFO - Switched to panel: thermal
+2025-08-30 09:18:04 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 09:18:05 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 09:18:06 - chamber_app.ui.main_window - INFO - Switched to panel: tvac
+2025-08-30 09:18:08 - chamber_app.ui.main_window - INFO - Switched to panel: hass
+2025-08-30 09:18:24 - chamber_app.core.application - INFO - Chamber HASS Chamber 1 state changed to staging | app_version=1.0.0
+2025-08-30 09:18:38 - chamber_app.ui.main_window - INFO - Switched to panel: overview
+2025-08-30 09:18:41 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: time
+2025-08-30 09:19:07 - chamber_app.ui.main_window - INFO - Switched to panel: hass
+2025-08-30 09:19:07 - chamber_app.ui.main_window - INFO - Switched to panel: tvac
+2025-08-30 09:19:14 - chamber_app.ui.main_window - INFO - Switched to panel: overview
+2025-08-30 09:19:15 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 09:19:15 - chamber_app.ui.main_window - INFO - Switched to panel: work_requests
+2025-08-30 09:19:39 - chamber_app.ui.main_window - INFO - Switched to panel: hass
+2025-08-30 09:20:22 - chamber_app.core.application - INFO - Chamber HASS Chamber 1 status changed to engineer needed | app_version=1.0.0
+2025-08-30 09:20:28 - chamber_app.ui.main_window - INFO - Switched to panel: overview
+2025-08-30 09:20:53 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: time
+2025-08-30 09:20:55 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: count
+2025-08-30 09:21:13 - chamber_app.ui.main_window - INFO - Switched to panel: overview
+2025-08-30 09:21:13 - chamber_app.ui.main_window - INFO - Switched to panel: tvac
+2025-08-30 09:21:15 - chamber_app.ui.main_window - INFO - Switched to panel: hass
+2025-08-30 09:21:15 - chamber_app.ui.main_window - INFO - Switched to panel: thermal
+2025-08-30 09:21:17 - chamber_app.ui.main_window - INFO - Switched to panel: work_requests
+2025-08-30 09:21:17 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 09:21:18 - chamber_app.ui.main_window - INFO - Switched to panel: work_requests
+2025-08-30 09:22:23 - chamber_app.ui.main_window - INFO - Main UI loop ended
+2025-08-30 09:22:23 - chamber_app.core.application - INFO - Shutting down application | app_version=1.0.0
+2025-08-30 09:22:23 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Ethernet
+2025-08-30 09:22:23 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Serial
+2025-08-30 09:22:23 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager stopped
+2025-08-30 09:22:23 - chamber_app.network.multi_user - INFO - Multi-user manager stopped
+2025-08-30 09:22:23 - chamber_app.data.database - INFO - Database connection closed
+2025-08-30 09:22:23 - websockets.server - INFO - server closing
+2025-08-30 09:22:23 - websockets.server - INFO - server closed
+2025-08-30 09:22:25 - chamber_app.ui.main_window - ERROR - Refresh timer error: main thread is not in main loop
+2025-08-30 09:22:26 - chamber_app.ui.main_window - ERROR - Refresh timer error: main thread is not in main loop
+2025-08-30 09:22:27 - chamber_app.ui.main_window - ERROR - Refresh timer error: main thread is not in main loop
+2025-08-30 09:22:28 - chamber_app.core.application - INFO - Application shutdown complete | app_version=1.0.0
+2025-08-30 09:26:23 - chamber_app.utils.logging_config - INFO - Logging configured - Level: INFO, File: C:\Users\jessneug\onix#3\logs\chamber_app.log
+2025-08-30 09:26:23 - __main__ - INFO - Starting Chamber Management Application
+2025-08-30 09:26:23 - __main__ - INFO - Version: 1.0.0
+2025-08-30 09:26:23 - chamber_app.data.database - INFO - Database manager initialized with path: C:\Users\jessneug\onix#3\data\chambers.db
+2025-08-30 09:26:23 - chamber_app.core.application - INFO - Chamber Application initialized | app_version=1.0.0
+2025-08-30 09:26:23 - chamber_app.core.application - INFO - Initializing application components | app_version=1.0.0
+2025-08-30 09:26:23 - chamber_app.data.database - INFO - Database tables created/verified
+2025-08-30 09:26:23 - chamber_app.data.database - INFO - Database initialized successfully
+2025-08-30 09:26:23 - chamber_app.core.application - INFO - Loaded 3 chambers from database | app_version=1.0.0
+2025-08-30 09:26:23 - chamber_app.sdk.telemetry_manager - INFO - Initialized 2 telemetry sources
+2025-08-30 09:26:23 - chamber_app.network.multi_user - INFO - MultiUserManager initialized on port 8765
+2025-08-30 09:26:23 - chamber_app.core.application - INFO - Application components initialized successfully | app_version=1.0.0
+2025-08-30 09:26:23 - chamber_app.core.application - INFO - Background services started | app_version=1.0.0
+2025-08-30 09:26:23 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Ethernet
+2025-08-30 09:26:23 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'ethernet' connected
+2025-08-30 09:26:23 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Serial
+2025-08-30 09:26:23 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'serial' connected
+2025-08-30 09:26:23 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager started
+2025-08-30 09:26:23 - chamber_app.network.multi_user - INFO - Multi-user manager started
+2025-08-30 09:26:23 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-08-30 09:26:23 - websockets.server - INFO - server listening on [::1]:8765
+2025-08-30 09:26:23 - chamber_app.network.multi_user - INFO - WebSocket server started on port 8765
+2025-08-30 09:26:24 - chamber_app.ui.main_window - INFO - Main window initialized
+2025-08-30 09:26:24 - chamber_app.ui.main_window - INFO - Starting main UI loop
+2025-08-30 09:26:28 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 09:26:29 - chamber_app.ui.main_window - INFO - Switched to panel: work_requests
+2025-08-30 09:26:30 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 09:26:32 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 09:26:33 - chamber_app.ui.main_window - INFO - Switched to panel: overview
+2025-08-30 09:26:34 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 09:26:35 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 09:26:36 - chamber_app.ui.main_window - INFO - Switched to panel: work_requests
+2025-08-30 09:26:48 - chamber_app.ui.main_window - INFO - Main UI loop ended
+2025-08-30 09:26:48 - chamber_app.core.application - INFO - Shutting down application | app_version=1.0.0
+2025-08-30 09:26:48 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Ethernet
+2025-08-30 09:26:48 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Serial
+2025-08-30 09:26:48 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager stopped
+2025-08-30 09:26:48 - chamber_app.network.multi_user - INFO - Multi-user manager stopped
+2025-08-30 09:26:48 - chamber_app.data.database - INFO - Database connection closed
+2025-08-30 09:26:48 - websockets.server - INFO - server closing
+2025-08-30 09:26:48 - websockets.server - INFO - server closed
+2025-08-30 09:26:53 - chamber_app.core.application - INFO - Application shutdown complete | app_version=1.0.0
+2025-08-30 09:32:57 - chamber_app.utils.logging_config - INFO - Logging configured - Level: INFO, File: C:\Users\jessneug\onix#3\logs\chamber_app.log
+2025-08-30 09:32:57 - chamber_app.data.database - INFO - Database manager initialized with path: C:\Users\jessneug\onix#3\data\chambers.db
+2025-08-30 09:32:57 - chamber_app.core.application - INFO - Chamber Application initialized | app_version=1.0.0
+2025-08-30 09:32:57 - chamber_app.core.application - INFO - Initializing application components | app_version=1.0.0
+2025-08-30 09:32:57 - chamber_app.data.database - INFO - Database tables created/verified
+2025-08-30 09:32:57 - chamber_app.data.database - INFO - Database initialized successfully
+2025-08-30 09:32:57 - chamber_app.core.application - INFO - Loaded 3 chambers from database | app_version=1.0.0
+2025-08-30 09:32:57 - chamber_app.sdk.telemetry_manager - INFO - Initialized 2 telemetry sources
+2025-08-30 09:32:57 - chamber_app.network.multi_user - INFO - MultiUserManager initialized on port 8765
+2025-08-30 09:32:57 - chamber_app.core.application - INFO - Application components initialized successfully | app_version=1.0.0
+2025-08-30 09:35:29 - chamber_app.utils.logging_config - INFO - Logging configured - Level: INFO, File: c:\Users\jessneug\onix#3\logs\chamber_app.log
+2025-08-30 09:35:29 - __main__ - INFO - Starting Chamber Management Application
+2025-08-30 09:35:29 - __main__ - INFO - Version: 1.0.0
+2025-08-30 09:35:29 - chamber_app.data.database - INFO - Database manager initialized with path: c:\Users\jessneug\onix#3\data\chambers.db
+2025-08-30 09:35:29 - chamber_app.core.application - INFO - Chamber Application initialized | app_version=1.0.0
+2025-08-30 09:35:29 - chamber_app.core.application - INFO - Initializing application components | app_version=1.0.0
+2025-08-30 09:35:29 - chamber_app.data.database - INFO - Database tables created/verified
+2025-08-30 09:35:29 - chamber_app.data.database - INFO - Database initialized successfully
+2025-08-30 09:35:29 - chamber_app.core.application - INFO - Loaded 3 chambers from database | app_version=1.0.0
+2025-08-30 09:35:29 - chamber_app.sdk.telemetry_manager - INFO - Initialized 2 telemetry sources
+2025-08-30 09:35:29 - chamber_app.network.multi_user - INFO - MultiUserManager initialized on port 8765
+2025-08-30 09:35:29 - chamber_app.core.application - INFO - Application components initialized successfully | app_version=1.0.0
+2025-08-30 09:35:29 - chamber_app.core.application - INFO - Background services started | app_version=1.0.0
+2025-08-30 09:35:29 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Ethernet
+2025-08-30 09:35:29 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'ethernet' connected
+2025-08-30 09:35:29 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Serial
+2025-08-30 09:35:29 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'serial' connected
+2025-08-30 09:35:29 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager started
+2025-08-30 09:35:29 - chamber_app.network.multi_user - INFO - Multi-user manager started
+2025-08-30 09:35:29 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-08-30 09:35:29 - websockets.server - INFO - server listening on [::1]:8765
+2025-08-30 09:35:29 - chamber_app.network.multi_user - INFO - WebSocket server started on port 8765
+2025-08-30 09:35:30 - chamber_app.ui.main_window - INFO - Main window initialized
+2025-08-30 09:35:30 - chamber_app.ui.main_window - INFO - Starting main UI loop
+2025-08-30 09:57:59 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: time
+2025-08-30 09:58:01 - chamber_app.ui.main_window - INFO - Main UI loop ended
+2025-08-30 09:58:01 - chamber_app.core.application - INFO - Shutting down application | app_version=1.0.0
+2025-08-30 09:58:01 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Ethernet
+2025-08-30 09:58:01 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Serial
+2025-08-30 09:58:01 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager stopped
+2025-08-30 09:58:01 - chamber_app.network.multi_user - INFO - Multi-user manager stopped
+2025-08-30 09:58:01 - chamber_app.data.database - INFO - Database connection closed
+2025-08-30 09:58:02 - websockets.server - INFO - server closing
+2025-08-30 09:58:02 - websockets.server - INFO - server closed
+2025-08-30 09:58:06 - chamber_app.core.application - INFO - Application shutdown complete | app_version=1.0.0
+2025-08-30 10:00:50 - chamber_app.utils.logging_config - INFO - Logging configured - Level: INFO, File: C:\Users\jessneug\onix#3\logs\chamber_app.log
+2025-08-30 10:00:50 - __main__ - INFO - Starting Chamber Management Application
+2025-08-30 10:00:50 - __main__ - INFO - Version: 1.0.0
+2025-08-30 10:00:50 - chamber_app.data.database - INFO - Database manager initialized with path: C:\Users\jessneug\onix#3\data\chambers.db
+2025-08-30 10:00:50 - chamber_app.core.application - INFO - Chamber Application initialized | app_version=1.0.0
+2025-08-30 10:00:50 - chamber_app.core.application - INFO - Initializing application components | app_version=1.0.0
+2025-08-30 10:00:50 - chamber_app.data.database - INFO - Database tables created/verified
+2025-08-30 10:00:50 - chamber_app.data.database - INFO - Database initialized successfully
+2025-08-30 10:00:50 - chamber_app.core.application - INFO - Loaded 3 chambers from database | app_version=1.0.0
+2025-08-30 10:00:50 - chamber_app.sdk.telemetry_manager - INFO - Initialized 2 telemetry sources
+2025-08-30 10:00:50 - chamber_app.network.multi_user - INFO - MultiUserManager initialized on port 8765
+2025-08-30 10:00:50 - chamber_app.core.application - INFO - Application components initialized successfully | app_version=1.0.0
+2025-08-30 10:00:50 - chamber_app.core.application - INFO - Background services started | app_version=1.0.0
+2025-08-30 10:00:50 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Ethernet
+2025-08-30 10:00:50 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'ethernet' connected
+2025-08-30 10:00:50 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Serial
+2025-08-30 10:00:50 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'serial' connected
+2025-08-30 10:00:50 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager started
+2025-08-30 10:00:50 - chamber_app.network.multi_user - INFO - Multi-user manager started
+2025-08-30 10:00:51 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-08-30 10:00:51 - websockets.server - INFO - server listening on [::1]:8765
+2025-08-30 10:00:51 - chamber_app.network.multi_user - INFO - WebSocket server started on port 8765
+2025-08-30 10:00:52 - chamber_app.ui.main_window - INFO - Main window initialized
+2025-08-30 10:00:52 - chamber_app.ui.main_window - INFO - Starting main UI loop
+2025-08-30 10:00:57 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: time
+2025-08-30 10:15:09 - chamber_app.ui.main_window - INFO - Main UI loop ended
+2025-08-30 10:15:09 - chamber_app.core.application - INFO - Shutting down application | app_version=1.0.0
+2025-08-30 10:15:09 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Ethernet
+2025-08-30 10:15:09 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Serial
+2025-08-30 10:15:09 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager stopped
+2025-08-30 10:15:09 - chamber_app.network.multi_user - INFO - Multi-user manager stopped
+2025-08-30 10:15:09 - chamber_app.data.database - INFO - Database connection closed
+2025-08-30 10:15:09 - websockets.server - INFO - server closing
+2025-08-30 10:15:09 - websockets.server - INFO - server closed
+2025-08-30 10:15:14 - chamber_app.core.application - INFO - Application shutdown complete | app_version=1.0.0
+2025-08-30 10:29:21 - chamber_app.utils.logging_config - INFO - Logging configured - Level: INFO, File: C:\Users\jessneug\onix#3\logs\chamber_app.log
+2025-08-30 10:29:21 - __main__ - INFO - Starting Chamber Management Application
+2025-08-30 10:29:21 - __main__ - INFO - Version: 1.0.0
+2025-08-30 10:29:21 - chamber_app.data.database - INFO - Database manager initialized with path: C:\Users\jessneug\onix#3\data\chambers.db
+2025-08-30 10:29:21 - chamber_app.core.application - INFO - Chamber Application initialized | app_version=1.0.0
+2025-08-30 10:29:21 - chamber_app.core.application - INFO - Initializing application components | app_version=1.0.0
+2025-08-30 10:29:21 - chamber_app.data.database - INFO - Database tables created/verified
+2025-08-30 10:29:21 - chamber_app.data.database - INFO - Database initialized successfully
+2025-08-30 10:29:21 - chamber_app.core.application - INFO - Loaded 3 chambers from database | app_version=1.0.0
+2025-08-30 10:29:21 - chamber_app.sdk.telemetry_manager - INFO - Initialized 2 telemetry sources
+2025-08-30 10:29:21 - chamber_app.network.multi_user - INFO - MultiUserManager initialized on port 8765
+2025-08-30 10:29:21 - chamber_app.core.application - INFO - Application components initialized successfully | app_version=1.0.0
+2025-08-30 10:29:21 - chamber_app.core.application - INFO - Background services started | app_version=1.0.0
+2025-08-30 10:29:21 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Ethernet
+2025-08-30 10:29:21 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'ethernet' connected
+2025-08-30 10:29:21 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Serial
+2025-08-30 10:29:21 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'serial' connected
+2025-08-30 10:29:21 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager started
+2025-08-30 10:29:21 - chamber_app.network.multi_user - INFO - Multi-user manager started
+2025-08-30 10:29:21 - websockets.server - INFO - server listening on [::1]:8765
+2025-08-30 10:29:21 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-08-30 10:29:21 - chamber_app.network.multi_user - INFO - WebSocket server started on port 8765
+2025-08-30 10:29:22 - chamber_app.ui.main_window - INFO - Main window initialized
+2025-08-30 10:29:22 - chamber_app.ui.main_window - INFO - Starting main UI loop
+2025-08-30 10:29:26 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: time
+2025-08-30 10:29:34 - chamber_app.ui.main_window - INFO - Main UI loop ended
+2025-08-30 10:29:34 - chamber_app.core.application - INFO - Shutting down application | app_version=1.0.0
+2025-08-30 10:29:34 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Ethernet
+2025-08-30 10:29:34 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Serial
+2025-08-30 10:29:34 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager stopped
+2025-08-30 10:29:34 - chamber_app.network.multi_user - INFO - Multi-user manager stopped
+2025-08-30 10:29:35 - chamber_app.data.database - INFO - Database connection closed
+2025-08-30 10:29:35 - websockets.server - INFO - server closing
+2025-08-30 10:29:35 - websockets.server - INFO - server closed
+2025-08-30 10:29:40 - chamber_app.core.application - INFO - Application shutdown complete | app_version=1.0.0
+2025-08-30 10:33:57 - chamber_app.utils.logging_config - INFO - Logging configured - Level: INFO, File: C:\Users\jessneug\onix#3\logs\chamber_app.log
+2025-08-30 10:33:57 - __main__ - INFO - Starting Chamber Management Application
+2025-08-30 10:33:57 - __main__ - INFO - Version: 1.0.0
+2025-08-30 10:33:57 - chamber_app.data.database - INFO - Database manager initialized with path: C:\Users\jessneug\onix#3\data\chambers.db
+2025-08-30 10:33:57 - chamber_app.core.application - INFO - Chamber Application initialized | app_version=1.0.0
+2025-08-30 10:33:57 - chamber_app.core.application - INFO - Initializing application components | app_version=1.0.0
+2025-08-30 10:33:57 - chamber_app.data.database - INFO - Database tables created/verified
+2025-08-30 10:33:57 - chamber_app.data.database - INFO - Database initialized successfully
+2025-08-30 10:33:57 - chamber_app.core.application - INFO - Loaded 3 chambers from database | app_version=1.0.0
+2025-08-30 10:33:57 - chamber_app.sdk.telemetry_manager - INFO - Initialized 2 telemetry sources
+2025-08-30 10:33:57 - chamber_app.network.multi_user - INFO - MultiUserManager initialized on port 8765
+2025-08-30 10:33:57 - chamber_app.core.application - INFO - Application components initialized successfully | app_version=1.0.0
+2025-08-30 10:33:57 - chamber_app.core.application - INFO - Background services started | app_version=1.0.0
+2025-08-30 10:33:57 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Ethernet
+2025-08-30 10:33:57 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'ethernet' connected
+2025-08-30 10:33:57 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Serial
+2025-08-30 10:33:57 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'serial' connected
+2025-08-30 10:33:57 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager started
+2025-08-30 10:33:57 - chamber_app.network.multi_user - INFO - Multi-user manager started
+2025-08-30 10:33:57 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-08-30 10:33:57 - websockets.server - INFO - server listening on [::1]:8765
+2025-08-30 10:33:57 - chamber_app.network.multi_user - INFO - WebSocket server started on port 8765
+2025-08-30 10:33:58 - chamber_app.ui.main_window - INFO - Main window initialized
+2025-08-30 10:33:58 - chamber_app.ui.main_window - INFO - Starting main UI loop
+2025-08-30 10:34:03 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: time
+2025-08-30 10:34:08 - chamber_app.ui.main_window - INFO - Main UI loop ended
+2025-08-30 10:34:08 - chamber_app.core.application - INFO - Shutting down application | app_version=1.0.0
+2025-08-30 10:34:08 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Ethernet
+2025-08-30 10:34:08 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Serial
+2025-08-30 10:34:08 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager stopped
+2025-08-30 10:34:08 - chamber_app.network.multi_user - INFO - Multi-user manager stopped
+2025-08-30 10:34:08 - chamber_app.data.database - INFO - Database connection closed
+2025-08-30 10:34:09 - websockets.server - INFO - server closing
+2025-08-30 10:34:09 - websockets.server - INFO - server closed
+2025-08-30 10:34:13 - chamber_app.core.application - INFO - Application shutdown complete | app_version=1.0.0
+2025-08-30 10:34:33 - chamber_app.utils.logging_config - INFO - Logging configured - Level: INFO, File: c:\Users\jessneug\onix#3\logs\chamber_app.log
+2025-08-30 10:34:33 - __main__ - INFO - Starting Chamber Management Application
+2025-08-30 10:34:33 - __main__ - INFO - Version: 1.0.0
+2025-08-30 10:34:33 - chamber_app.data.database - INFO - Database manager initialized with path: c:\Users\jessneug\onix#3\data\chambers.db
+2025-08-30 10:34:33 - chamber_app.core.application - INFO - Chamber Application initialized | app_version=1.0.0
+2025-08-30 10:34:33 - chamber_app.core.application - INFO - Initializing application components | app_version=1.0.0
+2025-08-30 10:34:33 - chamber_app.data.database - INFO - Database tables created/verified
+2025-08-30 10:34:33 - chamber_app.data.database - INFO - Database initialized successfully
+2025-08-30 10:34:33 - chamber_app.core.application - INFO - Loaded 3 chambers from database | app_version=1.0.0
+2025-08-30 10:34:33 - chamber_app.sdk.telemetry_manager - INFO - Initialized 2 telemetry sources
+2025-08-30 10:34:33 - chamber_app.network.multi_user - INFO - MultiUserManager initialized on port 8765
+2025-08-30 10:34:33 - chamber_app.core.application - INFO - Application components initialized successfully | app_version=1.0.0
+2025-08-30 10:34:33 - chamber_app.core.application - INFO - Background services started | app_version=1.0.0
+2025-08-30 10:34:33 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Ethernet
+2025-08-30 10:34:33 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'ethernet' connected
+2025-08-30 10:34:33 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Serial
+2025-08-30 10:34:33 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'serial' connected
+2025-08-30 10:34:33 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager started
+2025-08-30 10:34:33 - chamber_app.network.multi_user - INFO - Multi-user manager started
+2025-08-30 10:34:33 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-08-30 10:34:33 - websockets.server - INFO - server listening on [::1]:8765
+2025-08-30 10:34:33 - chamber_app.network.multi_user - INFO - WebSocket server started on port 8765
+2025-08-30 10:34:34 - chamber_app.ui.main_window - INFO - Main window initialized
+2025-08-30 10:34:34 - chamber_app.ui.main_window - INFO - Starting main UI loop
+2025-08-30 10:34:40 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: time
+2025-08-30 10:34:47 - chamber_app.ui.main_window - INFO - Switched to panel: tvac
+2025-08-30 10:35:02 - chamber_app.ui.main_window - INFO - Main UI loop ended
+2025-08-30 10:35:02 - chamber_app.core.application - INFO - Shutting down application | app_version=1.0.0
+2025-08-30 10:35:02 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Ethernet
+2025-08-30 10:35:02 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Serial
+2025-08-30 10:35:02 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager stopped
+2025-08-30 10:35:02 - chamber_app.network.multi_user - INFO - Multi-user manager stopped
+2025-08-30 10:35:02 - chamber_app.data.database - INFO - Database connection closed
+2025-08-30 10:35:03 - websockets.server - INFO - server closing
+2025-08-30 10:35:03 - websockets.server - INFO - server closed
+2025-08-30 10:35:07 - chamber_app.core.application - INFO - Application shutdown complete | app_version=1.0.0
+2025-08-30 10:35:39 - chamber_app.utils.logging_config - INFO - Logging configured - Level: INFO, File: C:\Users\jessneug\onix#3\logs\chamber_app.log
+2025-08-30 10:35:39 - __main__ - INFO - Starting Chamber Management Application
+2025-08-30 10:35:39 - __main__ - INFO - Version: 1.0.0
+2025-08-30 10:35:39 - chamber_app.data.database - INFO - Database manager initialized with path: C:\Users\jessneug\onix#3\data\chambers.db
+2025-08-30 10:35:39 - chamber_app.core.application - INFO - Chamber Application initialized | app_version=1.0.0
+2025-08-30 10:35:39 - chamber_app.core.application - INFO - Initializing application components | app_version=1.0.0
+2025-08-30 10:35:39 - chamber_app.data.database - INFO - Database tables created/verified
+2025-08-30 10:35:39 - chamber_app.data.database - INFO - Database initialized successfully
+2025-08-30 10:35:39 - chamber_app.core.application - INFO - Loaded 3 chambers from database | app_version=1.0.0
+2025-08-30 10:35:39 - chamber_app.sdk.telemetry_manager - INFO - Initialized 2 telemetry sources
+2025-08-30 10:35:39 - chamber_app.network.multi_user - INFO - MultiUserManager initialized on port 8765
+2025-08-30 10:35:39 - chamber_app.core.application - INFO - Application components initialized successfully | app_version=1.0.0
+2025-08-30 10:35:39 - chamber_app.core.application - INFO - Background services started | app_version=1.0.0
+2025-08-30 10:35:39 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Ethernet
+2025-08-30 10:35:39 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'ethernet' connected
+2025-08-30 10:35:39 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Serial
+2025-08-30 10:35:39 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'serial' connected
+2025-08-30 10:35:39 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager started
+2025-08-30 10:35:39 - chamber_app.network.multi_user - INFO - Multi-user manager started
+2025-08-30 10:35:39 - websockets.server - INFO - server listening on [::1]:8765
+2025-08-30 10:35:39 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-08-30 10:35:39 - chamber_app.network.multi_user - INFO - WebSocket server started on port 8765
+2025-08-30 10:35:40 - chamber_app.ui.main_window - INFO - Main window initialized
+2025-08-30 10:35:40 - chamber_app.ui.main_window - INFO - Starting main UI loop
+2025-08-30 10:35:45 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: time
+2025-08-30 10:36:11 - chamber_app.ui.main_window - INFO - Main UI loop ended
+2025-08-30 10:36:11 - chamber_app.core.application - INFO - Shutting down application | app_version=1.0.0
+2025-08-30 10:36:11 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Ethernet
+2025-08-30 10:36:11 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Serial
+2025-08-30 10:36:11 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager stopped
+2025-08-30 10:36:11 - chamber_app.network.multi_user - INFO - Multi-user manager stopped
+2025-08-30 10:36:11 - chamber_app.data.database - INFO - Database connection closed
+2025-08-30 10:36:12 - websockets.server - INFO - server closing
+2025-08-30 10:36:12 - websockets.server - INFO - server closed
+2025-08-30 10:36:16 - chamber_app.core.application - INFO - Application shutdown complete | app_version=1.0.0
+2025-08-30 11:27:34 - chamber_app.utils.logging_config - INFO - Logging configured - Level: INFO, File: C:\Users\jessneug\onix#3\logs\chamber_app.log
+2025-08-30 11:27:34 - __main__ - INFO - Starting Chamber Management Application
+2025-08-30 11:27:34 - __main__ - INFO - Version: 1.0.0
+2025-08-30 11:27:34 - chamber_app.data.database - INFO - Database manager initialized with path: C:\Users\jessneug\onix#3\data\chambers.db
+2025-08-30 11:27:34 - chamber_app.core.application - INFO - Chamber Application initialized | app_version=1.0.0
+2025-08-30 11:27:34 - chamber_app.core.application - INFO - Initializing application components | app_version=1.0.0
+2025-08-30 11:27:34 - chamber_app.data.database - INFO - Database tables created/verified
+2025-08-30 11:27:34 - chamber_app.data.database - INFO - Database initialized successfully
+2025-08-30 11:27:34 - chamber_app.core.application - INFO - Loaded 3 chambers from database | app_version=1.0.0
+2025-08-30 11:27:34 - chamber_app.sdk.telemetry_manager - INFO - Initialized 2 telemetry sources
+2025-08-30 11:27:34 - chamber_app.network.multi_user - INFO - MultiUserManager initialized on port 8765
+2025-08-30 11:27:34 - chamber_app.core.application - INFO - Application components initialized successfully | app_version=1.0.0
+2025-08-30 11:27:34 - chamber_app.core.application - INFO - Background services started | app_version=1.0.0
+2025-08-30 11:27:34 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Ethernet
+2025-08-30 11:27:34 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'ethernet' connected
+2025-08-30 11:27:34 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Serial
+2025-08-30 11:27:34 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'serial' connected
+2025-08-30 11:27:34 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager started
+2025-08-30 11:27:34 - chamber_app.network.multi_user - INFO - Multi-user manager started
+2025-08-30 11:27:34 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-08-30 11:27:34 - websockets.server - INFO - server listening on [::1]:8765
+2025-08-30 11:27:34 - chamber_app.network.multi_user - INFO - WebSocket server started on port 8765
+2025-08-30 11:27:35 - chamber_app.ui.main_window - INFO - Main window initialized
+2025-08-30 11:27:35 - chamber_app.ui.main_window - INFO - Starting main UI loop
+2025-08-30 11:27:39 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: time
+2025-08-30 11:28:45 - chamber_app.ui.main_window - INFO - Main UI loop ended
+2025-08-30 11:28:45 - chamber_app.core.application - INFO - Shutting down application | app_version=1.0.0
+2025-08-30 11:28:45 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Ethernet
+2025-08-30 11:28:45 - chamber_app.sdk.telemetry_manager - INFO - Disconnected from Serial
+2025-08-30 11:28:45 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager stopped
+2025-08-30 11:28:45 - chamber_app.network.multi_user - INFO - Multi-user manager stopped
+2025-08-30 11:28:45 - chamber_app.data.database - INFO - Database connection closed
+2025-08-30 11:28:46 - websockets.server - INFO - server closing
+2025-08-30 11:28:46 - websockets.server - INFO - server closed
+2025-08-30 11:28:50 - chamber_app.core.application - INFO - Application shutdown complete | app_version=1.0.0
+2025-08-30 12:30:53 - chamber_app.utils.logging_config - INFO - Logging configured - Level: INFO, File: c:\Users\jessneug\onix#3\logs\chamber_app.log
+2025-08-30 12:30:53 - __main__ - INFO - Starting Chamber Management Application
+2025-08-30 12:30:53 - __main__ - INFO - Version: 1.0.0
+2025-08-30 12:30:53 - chamber_app.data.database - INFO - Database manager initialized with path: c:\Users\jessneug\onix#3\data\chambers.db
+2025-08-30 12:30:53 - chamber_app.core.application - INFO - Chamber Application initialized | app_version=1.0.0
+2025-08-30 12:30:53 - chamber_app.core.application - INFO - Initializing application components | app_version=1.0.0
+2025-08-30 12:30:53 - chamber_app.data.database - INFO - Database tables created/verified
+2025-08-30 12:30:53 - chamber_app.data.database - INFO - Database initialized successfully
+2025-08-30 12:30:53 - chamber_app.core.application - INFO - Loaded 3 chambers from database | app_version=1.0.0
+2025-08-30 12:30:53 - chamber_app.sdk.telemetry_manager - INFO - Initialized 2 telemetry sources
+2025-08-30 12:30:53 - chamber_app.network.multi_user - INFO - MultiUserManager initialized on port 8765
+2025-08-30 12:30:53 - chamber_app.core.application - INFO - Application components initialized successfully | app_version=1.0.0
+2025-08-30 12:30:53 - chamber_app.core.application - INFO - Background services started | app_version=1.0.0
+2025-08-30 12:30:53 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Ethernet
+2025-08-30 12:30:53 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'ethernet' connected
+2025-08-30 12:30:53 - chamber_app.sdk.telemetry_manager - INFO - Connected to chamber via Serial
+2025-08-30 12:30:53 - chamber_app.sdk.telemetry_manager - INFO - Telemetry source 'serial' connected
+2025-08-30 12:30:53 - chamber_app.sdk.telemetry_manager - INFO - Telemetry manager started
+2025-08-30 12:30:53 - chamber_app.network.multi_user - INFO - Multi-user manager started
+2025-08-30 12:30:54 - websockets.server - INFO - server listening on [::1]:8765
+2025-08-30 12:30:54 - websockets.server - INFO - server listening on 127.0.0.1:8765
+2025-08-30 12:30:54 - chamber_app.network.multi_user - INFO - WebSocket server started on port 8765
+2025-08-30 12:30:55 - chamber_app.ui.main_window - INFO - Main window initialized
+2025-08-30 12:30:55 - chamber_app.ui.main_window - INFO - Starting main UI loop
+2025-08-30 12:31:00 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: time
+2025-08-30 13:12:17 - chamber_app.ui.main_window - INFO - Switched to panel: tvac
+2025-08-30 13:12:17 - chamber_app.ui.main_window - INFO - Switched to panel: hass
+2025-08-30 13:12:18 - chamber_app.ui.main_window - INFO - Switched to panel: work_requests
+2025-08-30 13:12:20 - chamber_app.ui.main_window - INFO - Switched to panel: thermal
+2025-08-30 13:12:21 - chamber_app.ui.main_window - INFO - Switched to panel: overview
+2025-08-30 13:12:49 - chamber_app.ui.data_overview_panel - INFO - Changed timeline hours to: 1
+2025-08-30 13:12:52 - chamber_app.ui.data_overview_panel - INFO - Changed timeline hours to: 24
+2025-08-30 13:12:54 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: count
+2025-08-30 13:13:17 - chamber_app.ui.data_overview_panel - INFO - Changed view mode to: time
+2025-08-30 13:14:35 - chamber_app.ui.main_window - INFO - Switched to panel: settings
+2025-08-30 13:14:39 - chamber_app.ui.main_window - INFO - Switched to panel: thermal
+2025-08-30 13:14:58 - chamber_app.ui.main_window - INFO - Switched to panel: overview
+2025-08-30 13:16:43 - chamber_app.ui.main_window - INFO - Switched to panel: work_requests
+2025-08-30 13:36:47 - chamber_app.ui.main_window - INFO - Switched to panel: overview
+2025-08-30 13:37:14 - chamber_app.ui.main_window - INFO - Switched to panel: tvac
