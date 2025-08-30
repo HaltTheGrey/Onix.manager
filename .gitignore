@@ -134,6 +134,10 @@ data/*.db-*
 logs/*.log
 logs/*.log.*
 
+# Ignore live database and log changes
+data/chambers.db
+logs/chamber_app.log
+
 # IDE files
 .vscode/
 .idea/
