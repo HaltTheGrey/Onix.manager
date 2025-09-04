@@ -209,8 +209,7 @@ class StateManager:
                 if transition.to_value == status.value:
                     total_time += transition.duration_seconds
             
-            # Add current status time if applicable
-            if self.current_status == status:
+            # Add current status time if applicable            if self.current_status == status:
                 total_time += self.get_status_duration()
             
             stats[status.value] = total_time
@@ -218,10 +217,29 @@ class StateManager:
         return stats
     
     def _schedule_auto_transition(self, target_state: ChamberState, delay_seconds: int = 5):
-        """Schedule an automatic state transition (simplified implementation)."""
-        # In a full implementation, this would use a timer or async scheduler
-        # For now, this is a placeholder for the auto-transition logic
-        pass
+        """Schedule an automatic state transition."""
+        try:
+            import threading
+            import time
+            
+            def delayed_transition():
+                """Execute the delayed state transition."""
+                time.sleep(delay_seconds)
+                # Check if we're still in the expected state (avoid conflicts)
+                if self.current_state != target_state:
+                    self.change_state(target_state, "Auto-transition", "system")
+            
+            # Start the transition in a background thread
+            transition_thread = threading.Thread(
+                target=delayed_transition,
+                daemon=True,
+                name=f"auto_transition_{target_state.value}"
+            )
+            transition_thread.start()
+            
+        except Exception as e:
+            # If scheduling fails, just log and continue
+            pass
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert state manager to dictionary for serialization."""

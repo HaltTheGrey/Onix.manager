@@ -305,8 +305,15 @@ class ChamberCard(ctk.CTkFrame):
     
     def _show_work_request_dialog(self):
         """Show dialog to create work request."""
-        # This would open a work request creation dialog
-        messagebox.showinfo("Work Request", "Work request dialog would open here")
+        from .work_requests_panel import NewWorkRequestDialog
+        
+        # Pre-select this chamber in the dialog
+        dialog = ChamberWorkRequestDialog(self.winfo_toplevel(), self.app, self.chamber)
+        self.wait_window(dialog.dialog)
+        
+        if dialog.result:
+            self.update_data()
+            messagebox.showinfo("Success", f"Work request '{dialog.result.title}' created successfully!")
     
     def update_data(self):
         """Update the chamber card with current data."""
@@ -609,6 +616,165 @@ class StatusChangeDialog:
                 
         except ValueError:
             messagebox.showerror("Error", "Invalid status selected")
+    
+    def _cancel(self):
+        """Cancel the dialog."""
+        self.dialog.destroy()
+
+
+class ChamberWorkRequestDialog:
+    """Dialog for creating a work request from a chamber card."""
+    
+    def __init__(self, parent, app, chamber):
+        self.app = app
+        self.chamber = chamber
+        self.result = None
+        
+        # Create dialog
+        self.dialog = ctk.CTkToplevel(parent)
+        self.dialog.title(f"New Work Request - {chamber.name}")
+        self.dialog.geometry("500x600")
+        self.dialog.transient(parent)
+        self.dialog.grab_set()
+        
+        # Center dialog
+        self.dialog.update_idletasks()
+        x = (parent.winfo_width() // 2) - (500 // 2) + parent.winfo_x()
+        y = (parent.winfo_height() // 2) - (600 // 2) + parent.winfo_y()
+        self.dialog.geometry(f"500x600+{x}+{y}")
+        
+        self._setup_dialog()
+    
+    def _setup_dialog(self):
+        """Setup the work request dialog."""
+        from ..core.chamber import WorkRequest
+        from datetime import datetime
+        
+        main_frame = ctk.CTkFrame(self.dialog)
+        main_frame.pack(fill="both", expand=True, padx=20, pady=20)
+        
+        # Title
+        title = ctk.CTkLabel(
+            main_frame,
+            text=f"Create Work Request",
+            font=ctk.CTkFont(size=18, weight="bold")
+        )
+        title.pack(pady=(0, 10))
+        
+        # Chamber info (read-only)
+        chamber_info = ctk.CTkLabel(
+            main_frame,
+            text=f"🏢 Chamber: {self.chamber.name} ({self.chamber.type.value})",
+            font=ctk.CTkFont(size=14, weight="bold"),
+            fg_color="lightblue",
+            corner_radius=5,
+            height=40
+        )
+        chamber_info.pack(fill="x", pady=(0, 20))
+        
+        # Form fields
+        # Title
+        title_label = ctk.CTkLabel(main_frame, text="Title:", anchor="w")
+        title_label.pack(fill="x", pady=(0, 5))
+        
+        self.title_entry = ctk.CTkEntry(main_frame, placeholder_text="Enter request title")
+        self.title_entry.pack(fill="x", pady=(0, 15))
+        
+        # Priority
+        priority_label = ctk.CTkLabel(main_frame, text="Priority:", anchor="w")
+        priority_label.pack(fill="x", pady=(0, 5))
+        
+        self.priority_combo = ctk.CTkComboBox(
+            main_frame,
+            values=["Low", "Medium", "High", "Critical"],
+            state="readonly"
+        )
+        self.priority_combo.pack(fill="x", pady=(0, 15))
+        self.priority_combo.set("Medium")
+        
+        # Assigned to
+        assigned_label = ctk.CTkLabel(main_frame, text="Assigned to (optional):", anchor="w")
+        assigned_label.pack(fill="x", pady=(0, 5))
+        
+        self.assigned_entry = ctk.CTkEntry(main_frame, placeholder_text="Enter assignee name")
+        self.assigned_entry.pack(fill="x", pady=(0, 15))
+        
+        # Estimated hours
+        hours_label = ctk.CTkLabel(main_frame, text="Estimated hours:", anchor="w")
+        hours_label.pack(fill="x", pady=(0, 5))
+        
+        self.hours_entry = ctk.CTkEntry(main_frame, placeholder_text="0.0")
+        self.hours_entry.pack(fill="x", pady=(0, 15))
+        
+        # Description
+        desc_label = ctk.CTkLabel(main_frame, text="Description:", anchor="w")
+        desc_label.pack(fill="x", pady=(0, 5))
+        
+        self.desc_text = ctk.CTkTextbox(main_frame, height=120)
+        self.desc_text.pack(fill="x", pady=(0, 20))
+        
+        # Buttons
+        button_frame = ctk.CTkFrame(main_frame)
+        button_frame.pack(fill="x")
+        
+        cancel_btn = ctk.CTkButton(
+            button_frame,
+            text="Cancel",
+            command=self._cancel
+        )
+        cancel_btn.pack(side="right", padx=(10, 0))
+        
+        create_btn = ctk.CTkButton(
+            button_frame,
+            text="Create Request",
+            command=self._create_request,
+            fg_color="green",
+            hover_color="dark green"
+        )
+        create_btn.pack(side="right")
+        
+        # Focus on title entry
+        self.title_entry.focus()
+    
+    def _create_request(self):
+        """Create the new work request."""
+        from ..core.chamber import WorkRequest
+        from datetime import datetime
+        from tkinter import messagebox
+        
+        title = self.title_entry.get().strip()
+        priority = self.priority_combo.get().lower()
+        assigned_to = self.assigned_entry.get().strip()
+        description = self.desc_text.get("1.0", "end").strip()
+        
+        if not title:
+            messagebox.showerror("Error", "Please enter a title.")
+            return
+        
+        # Parse estimated hours
+        try:
+            estimated_hours = float(self.hours_entry.get() or "0.0")
+        except ValueError:
+            messagebox.showerror("Error", "Please enter a valid number for estimated hours.")
+            return
+          # Create work request
+        work_request = WorkRequest(
+            title=title,
+            description=description,
+            priority=priority,
+            assigned_to=assigned_to,
+            created_by=self.app.current_user,
+            estimated_hours=estimated_hours
+        )
+        
+        # Add to chamber
+        success = self.app.add_work_request(self.chamber.id, work_request)
+        
+        if success:
+            self.result = work_request
+            self.dialog.destroy()
+        else:
+            messagebox.showerror("Error", "Failed to create work request.")
     
     def _cancel(self):
         """Cancel the dialog."""

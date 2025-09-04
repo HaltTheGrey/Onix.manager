@@ -223,6 +223,12 @@ class AuthenticationManager:
             return self.current_user
         return None
     
+    def get_current_username(self) -> str:
+        """Get the current authenticated username."""
+        if self.is_authenticated() and self.current_user:
+            return self.current_user.username
+        return "guest"
+    
     def extend_session(self):
         """Extend the current session."""
         if self.is_authenticated():

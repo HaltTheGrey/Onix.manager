@@ -32,20 +32,14 @@ def test_core_functionality():
     
     app = ChamberApplication(config)
     app.initialize()
-    
-    # Test 1: Chamber Management
+      # Test 1: Chamber Management
     print("✅ Test 1: Chamber Management")
     initial_count = len(app.get_chambers())
     print(f"   Initial chambers: {initial_count}")
     
     # Add a new chamber
-    test_chamber = Chamber(
-        name="Test Chamber",
-        chamber_type=ChamberType.TVAC
-    )
-    
-    success = app.add_chamber(test_chamber)
-    assert success, "Failed to add chamber"
+    test_chamber = app.add_chamber("Test Chamber", ChamberType.TVAC)
+    assert test_chamber is not None, "Failed to add chamber"
     
     new_count = len(app.get_chambers())
     assert new_count == initial_count + 1, "Chamber count not updated"
@@ -76,7 +70,7 @@ def test_core_functionality():
         description="This is a test work request",
         priority="High",
         estimated_hours=2.0,
-        requester="test_user"
+        created_by="test_user"
     )
     
     success = app.add_work_request(test_chamber.id, work_request)
@@ -97,8 +91,8 @@ def test_core_functionality():
     )
     
     chamber.update_telemetry(test_metrics)
-    assert chamber.latest_telemetry is not None, "Telemetry not updated"
-    assert chamber.latest_telemetry.temperature == 25.0, "Telemetry data incorrect"
+    assert chamber.last_telemetry is not None, "Telemetry not updated"
+    assert chamber.last_telemetry.temperature == 25.0, "Telemetry data incorrect"
     print("   Telemetry updated successfully")
     
     # Test 6: Statistics
@@ -132,15 +126,9 @@ def test_database_persistence():
     
     initial_chambers = len(app1.get_chambers())
     print(f"   Initial chambers in DB: {initial_chambers}")
-    
-    # Add a test chamber
-    test_chamber = Chamber(
-        name="Persistence Test Chamber",
-        chamber_type=ChamberType.HASS
-    )
+      # Add a test chamber
+    test_chamber = app1.add_chamber("Persistence Test Chamber", ChamberType.HASS)
     test_chamber.set_state(ChamberState.SETUP, "Testing persistence", "test_user")
-    
-    app1.add_chamber(test_chamber)
     test_chamber_id = test_chamber.id
     
     # Shutdown to force save

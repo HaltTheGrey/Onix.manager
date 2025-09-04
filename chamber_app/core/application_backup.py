@@ -35,23 +35,11 @@ class ChamberApplication:
         self.notification_manager = NotificationManager(self)
         self.telemetry_manager = None
         self.multi_user_manager = None
-        self.main_window = None        # Application state
-        self.is_running = False
+        self.main_window = None
         
-        # Initialize authentication
-        from ..auth.auth_manager import AuthenticationManager
-        self.auth_manager = AuthenticationManager(self.config)
-          # Auto-login in developer mode or set up proper authentication
-        developer_override = self.config.get('DEVELOPER_OVERRIDE', False)
-        if (isinstance(developer_override, bool) and developer_override) or \
-           (isinstance(developer_override, str) and developer_override.lower() == 'true'):
-            self.auth_manager.authenticate_user("admin")
-            self.logger.info("Developer mode: auto-logged in as admin")
-        else:
-            # In production, would require actual login
-            self.auth_manager.authenticate_user("admin")  # Temporary fallback
-            
-        self.current_user = self.auth_manager.get_current_username()
+        # Application state
+        self.is_running = False
+        self.current_user = "default_user"  # TODO: Implement proper authentication
         
         # Event loop for async operations
         self.event_loop = None
@@ -105,7 +93,7 @@ class ChamberApplication:
             self.logger.error(f"Application error: {e}", exc_info=True)
         finally:
             self.shutdown()
-    
+      def shutdown(self):
     def shutdown(self):
         """Shutdown the application gracefully."""
         self.logger.info("Shutting down application")

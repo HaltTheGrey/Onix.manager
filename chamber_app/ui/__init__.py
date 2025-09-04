@@ -1,11 +1,18 @@
 """UI package initialization."""
 
 # Import only what's needed to avoid circular imports
-from .chamber_card import ChamberCard
+# ChamberCard and other UI components will be imported directly where needed
 from .work_requests_panel import WorkRequestsPanel
+from .notifications import NotificationManager, NotificationPanel, NotificationToast
+from .filters import AdvancedFilterPanel, QuickFilterBar, FilterWidget
 
-# MainWindow and DataOverviewPanel will be imported directly where needed
+# MainWindow and other components will be imported directly where needed
 __all__ = [
-    'ChamberCard',
     'WorkRequestsPanel',
+    'NotificationManager',
+    'NotificationPanel', 
+    'NotificationToast',
+    'AdvancedFilterPanel',
+    'QuickFilterBar',
+    'FilterWidget'
 ]

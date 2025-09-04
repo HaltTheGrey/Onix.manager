@@ -277,15 +277,242 @@ class DataOverviewPanel(ctk.CTkFrame):
                 self._show_chambers_by_status(event)
     
     def _show_chambers_by_state(self, event):
-        """Show list of chambers in a specific state."""
-        # This would open a dialog showing chambers in the selected state
-        # For now, just show a message
-        messagebox.showinfo("Chambers by State", "Would show chambers in selected state")
+        """Show list of chambers in a specific state."""        # Show chambers by state with detailed dialog
+        try:
+            # Get the clicked bar to determine the state
+            if hasattr(event, 'artist') and hasattr(event.artist, 'get_label'):
+                state_name = event.artist.get_label()
+                self._show_chamber_list_dialog("state", state_name)
+            else:
+                # Fallback - show all states
+                self._show_all_states_dialog()
+        except Exception as e:
+            self.logger.error(f"Error showing chambers by state: {e}")
     
     def _show_chambers_by_status(self, event):
         """Show list of chambers with a specific status."""
-        # This would open a dialog showing chambers with the selected status
-        messagebox.showinfo("Chambers by Status", "Would show chambers with selected status")
+        # Show chambers by status with detailed dialog
+        try:
+            # Get the clicked bar to determine the status
+            if hasattr(event, 'artist') and hasattr(event.artist, 'get_label'):
+                status_name = event.artist.get_label()
+                self._show_chamber_list_dialog("status", status_name)
+            else:
+                # Fallback - show all statuses
+                self._show_all_statuses_dialog()
+        except Exception as e:
+            self.logger.error(f"Error showing chambers by status: {e}")
+    
+    def _show_chamber_list_dialog(self, filter_type: str, filter_value: str):
+        """Show a dialog with chambers filtered by state or status."""
+        import customtkinter as ctk
+        from ..core.chamber_state import ChamberState, ChamberStatus
+        
+        # Get chambers based on filter
+        if filter_type == "state":
+            chambers = [c for c in self.app.get_chambers() 
+                       if c.state_manager.current_state.value == filter_value]
+            title = f"Chambers in '{filter_value}' State"
+        else:  # status
+            chambers = [c for c in self.app.get_chambers() 
+                       if c.state_manager.current_status and c.state_manager.current_status.value == filter_value]
+            title = f"Chambers with '{filter_value}' Status"
+        
+        if not chambers:
+            messagebox.showinfo("No Chambers", f"No chambers found with {filter_type}: {filter_value}")
+            return
+        
+        # Create dialog
+        dialog = ctk.CTkToplevel(self)
+        dialog.title(title)
+        dialog.geometry("600x500")
+        dialog.transient(self.winfo_toplevel())
+        dialog.grab_set()
+        
+        # Center dialog
+        dialog.update_idletasks()
+        x = (self.winfo_width() // 2) - (600 // 2) + self.winfo_rootx()
+        y = (self.winfo_height() // 2) - (500 // 2) + self.winfo_rooty()
+        dialog.geometry(f"600x500+{x}+{y}")
+        
+        # Main frame
+        main_frame = ctk.CTkFrame(dialog)
+        main_frame.pack(fill="both", expand=True, padx=20, pady=20)
+        
+        # Title
+        title_label = ctk.CTkLabel(
+            main_frame,
+            text=f"{title} ({len(chambers)} chambers)",
+            font=ctk.CTkFont(size=18, weight="bold")
+        )
+        title_label.pack(pady=(0, 15))
+        
+        # Scrollable list
+        scrollable_frame = ctk.CTkScrollableFrame(main_frame)
+        scrollable_frame.pack(fill="both", expand=True)
+        
+        # Add chamber entries
+        for chamber in chambers:
+            self._create_chamber_list_item(scrollable_frame, chamber)
+        
+        # Close button
+        close_btn = ctk.CTkButton(
+            main_frame,
+            text="Close",
+            command=dialog.destroy,
+            width=100
+        )
+        close_btn.pack(pady=(15, 0))
+    
+    def _create_chamber_list_item(self, parent, chamber):
+        """Create a list item for a chamber."""
+        import customtkinter as ctk
+        
+        # Item frame
+        item_frame = ctk.CTkFrame(parent)
+        item_frame.pack(fill="x", padx=5, pady=2)
+        
+        # Chamber info
+        info_frame = ctk.CTkFrame(item_frame)
+        info_frame.pack(fill="x", padx=10, pady=8)
+        info_frame.grid_columnconfigure(1, weight=1)
+        
+        # Name and type
+        name_label = ctk.CTkLabel(
+            info_frame,
+            text=f"{chamber.name} ({chamber.type.value})",
+            font=ctk.CTkFont(size=14, weight="bold")
+        )
+        name_label.grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 5))
+        
+        # State
+        state_label = ctk.CTkLabel(
+            info_frame,
+            text=f"State: {chamber.state_manager.current_state.value}",
+            font=ctk.CTkFont(size=12)
+        )
+        state_label.grid(row=1, column=0, sticky="w")
+        
+        # Status
+        status_text = chamber.state_manager.current_status.value if chamber.state_manager.current_status else "None"
+        status_label = ctk.CTkLabel(
+            info_frame,
+            text=f"Status: {status_text}",
+            font=ctk.CTkFont(size=12)
+        )
+        status_label.grid(row=1, column=1, sticky="w", padx=(20, 0))
+        
+        # Connection and work requests
+        conn_text = "Connected" if chamber.is_connected else "Disconnected"
+        active_wr = len(chamber.get_active_work_requests())
+        
+        details_label = ctk.CTkLabel(
+            info_frame,
+            text=f"Connection: {conn_text} | Active Work Requests: {active_wr}",
+            font=ctk.CTkFont(size=11),
+            text_color="gray"
+        )
+        details_label.grid(row=2, column=0, columnspan=2, sticky="w", pady=(5, 0))
+    
+    def _show_all_states_dialog(self):
+        """Show dialog with all chamber states and counts."""
+        stats = self.app.get_chamber_statistics()
+        state_counts = stats.get('by_state', {})
+        
+        import customtkinter as ctk
+        
+        dialog = ctk.CTkToplevel(self)
+        dialog.title("Chambers by State")
+        dialog.geometry("400x400")
+        dialog.transient(self.winfo_toplevel())
+        dialog.grab_set()
+        
+        # Center dialog
+        dialog.update_idletasks()
+        x = (self.winfo_width() // 2) - (400 // 2) + self.winfo_rootx()
+        y = (self.winfo_height() // 2) - (400 // 2) + self.winfo_rooty()
+        dialog.geometry(f"400x400+{x}+{y}")
+        
+        main_frame = ctk.CTkFrame(dialog)
+        main_frame.pack(fill="both", expand=True, padx=20, pady=20)
+        
+        title_label = ctk.CTkLabel(
+            main_frame,
+            text="Chambers by State",
+            font=ctk.CTkFont(size=18, weight="bold")
+        )
+        title_label.pack(pady=(0, 15))
+        
+        scrollable_frame = ctk.CTkScrollableFrame(main_frame)
+        scrollable_frame.pack(fill="both", expand=True)
+        
+        for state, count in state_counts.items():
+            if count > 0:
+                btn = ctk.CTkButton(
+                    scrollable_frame,
+                    text=f"{state}: {count} chambers",
+                    command=lambda s=state: self._show_chamber_list_dialog("state", s),
+                    anchor="w"
+                )
+                btn.pack(fill="x", pady=2, padx=5)
+        
+        close_btn = ctk.CTkButton(
+            main_frame,
+            text="Close",
+            command=dialog.destroy,
+            width=100
+        )
+        close_btn.pack(pady=(15, 0))
+    
+    def _show_all_statuses_dialog(self):
+        """Show dialog with all chamber statuses and counts."""
+        stats = self.app.get_chamber_statistics()
+        status_counts = stats.get('by_status', {})
+        
+        import customtkinter as ctk
+        
+        dialog = ctk.CTkToplevel(self)
+        dialog.title("Chambers by Status")
+        dialog.geometry("400x400")
+        dialog.transient(self.winfo_toplevel())
+        dialog.grab_set()
+        
+        # Center dialog
+        dialog.update_idletasks()
+        x = (self.winfo_width() // 2) - (400 // 2) + self.winfo_rootx()
+        y = (self.winfo_height() // 2) - (400 // 2) + self.winfo_rooty()
+        dialog.geometry(f"400x400+{x}+{y}")
+        
+        main_frame = ctk.CTkFrame(dialog)
+        main_frame.pack(fill="both", expand=True, padx=20, pady=20)
+        
+        title_label = ctk.CTkLabel(
+            main_frame,
+            text="Chambers by Status",
+            font=ctk.CTkFont(size=18, weight="bold")
+        )
+        title_label.pack(pady=(0, 15))
+        
+        scrollable_frame = ctk.CTkScrollableFrame(main_frame)
+        scrollable_frame.pack(fill="both", expand=True)
+        
+        for status, count in status_counts.items():
+            if count > 0:
+                btn = ctk.CTkButton(
+                    scrollable_frame,
+                    text=f"{status}: {count} chambers",
+                    command=lambda s=status: self._show_chamber_list_dialog("status", s),
+                    anchor="w"
+                )
+                btn.pack(fill="x", pady=2, padx=5)
+        
+        close_btn = ctk.CTkButton(
+            main_frame,
+            text="Close",
+            command=dialog.destroy,
+            width=100
+        )
+        close_btn.pack(pady=(15, 0))
     
     def update_data(self):
         """Update all data displays."""
@@ -447,18 +674,22 @@ class DataOverviewPanel(ctk.CTkFrame):
             for chamber in chambers:
                 # Get state/status history for the time range
                 history = self._get_chamber_history(chamber, start_time, end_time, data_type)
-                
-                # Create horizontal bars for each state/status period
+                  # Create horizontal bars for each state/status period
                 for period in history:
                     color = self.state_colors.get(period['state'], self.state_colors['default'])
-                    duration = (period['end_time'] - period['start_time']).total_seconds() / 3600  # Convert to hours
+                    
+                    # Calculate position and width using matplotlib dates
+                    start_pos = mdates.date2num(period['start_time'])
+                    end_pos = mdates.date2num(period['end_time'])
+                    width = end_pos - start_pos
                     
                     # Only show bars that are long enough to be visible
+                    duration = (period['end_time'] - period['start_time']).total_seconds() / 3600  # Convert to hours
                     if duration > 0.1:  # Minimum 6 minutes
                         ax.barh(
                             y_position, 
-                            duration, 
-                            left=(period['start_time'] - start_time).total_seconds() / 3600,
+                            width, 
+                            left=start_pos,
                             height=0.8,
                             color=color,
                             alpha=0.8,
@@ -468,17 +699,28 @@ class DataOverviewPanel(ctk.CTkFrame):
                 
                 y_labels.append(f"{chamber_type[:2]}-{chamber.name}")
                 y_position += 1
-        
-        # Configure axes
-        ax.set_xlim(0, self.timeline_hours)
+          # Configure axes
+        ax.set_xlim(mdates.date2num(start_time), mdates.date2num(end_time))
         ax.set_ylim(-0.5, y_position - 0.5)
-        ax.set_xlabel("Hours Ago", color='white')
+        
+        # Format x-axis for time
+        if self.timeline_hours <= 6:
+            ax.xaxis.set_major_locator(HourLocator(interval=1))
+            ax.xaxis.set_major_formatter(DateFormatter('%H:%M'))
+        elif self.timeline_hours <= 24:
+            ax.xaxis.set_major_locator(HourLocator(interval=3))
+            ax.xaxis.set_major_formatter(DateFormatter('%H:%M'))
+        else:
+            ax.xaxis.set_major_locator(HourLocator(interval=12))
+            ax.xaxis.set_major_formatter(DateFormatter('%m/%d %H:%M'))
+        
+        ax.set_xlabel("Time", color='white')
         ax.set_ylabel("Chambers", color='white')
         ax.set_title(title, color='white')
         ax.tick_params(colors='white')
         
-        # Invert x-axis so recent time is on the right
-        ax.invert_xaxis()
+        # Rotate x-axis labels for better readability
+        plt.setp(ax.get_xticklabels(), rotation=45, ha='right')
         
         # Set y-axis labels
         if y_labels:

@@ -418,21 +418,179 @@ class DataOverviewPanel(ctk.CTkFrame):
             graph_info['graph_frame'].grid_remove()
             graph_info['collapse_btn'].configure(text="▶")
             self.graph_collapsed[chamber_type] = True
-    
-    def _on_hover(self, event, chamber_type: str):
+      def _on_hover(self, event, chamber_type: str):
         """Handle mouse hover over timeline graph."""
         if event.inaxes is None:
             return
         
         # Get hover information and show tooltip
-        # This would be implemented for detailed hover information
-        pass
-    
-    def _on_timeline_click(self, event, chamber_type: str):
+        try:
+            # Get the position of the mouse
+            x, y = event.xdata, event.ydata
+            if x is None or y is None:
+                return
+                
+            # Get chamber information at this position
+            graph_info = self.chamber_graphs.get(chamber_type)
+            if not graph_info:
+                return
+                
+            # Convert y position to chamber index
+            chamber_index = int(round(y))
+            chambers = self.app.get_chambers_by_type(ChamberType(chamber_type))
+            
+            if 0 <= chamber_index < len(chambers):
+                chamber = chambers[chamber_index]
+                
+                # Format hover text
+                hover_text = f"""Chamber: {chamber.name}
+State: {chamber.state_manager.current_state.value}
+Status: {chamber.state_manager.current_status.value if chamber.state_manager.current_status else 'None'}
+Connected: {'Yes' if chamber.is_connected else 'No'}"""
+                
+                # Update tooltip (simple implementation using window title)
+                # In a full implementation, you'd create a proper tooltip widget
+                graph_info['ax'].set_title(hover_text, fontsize=8, pad=5)
+                graph_info['canvas'].draw_idle()
+                
+        except Exception as e:
+            self.logger.debug(f"Error in hover handler: {e}")
+      def _on_timeline_click(self, event, chamber_type: str):
         """Handle click on timeline graph."""
         if event.dblclick and event.inaxes is not None:
             # Show detailed chamber information
-            messagebox.showinfo("Chamber Details", f"Detailed view for {chamber_type} chambers")
+            self._show_chamber_details(chamber_type)
+    
+    def _show_chamber_details(self, chamber_type: str):
+        """Show detailed information for chambers of a specific type."""
+        try:
+            from ..core.chamber_state import ChamberType
+            
+            # Get chambers of the specified type
+            chambers = [c for c in self.app.get_chambers() if c.type.value.upper() == chamber_type.upper()]
+            
+            if not chambers:
+                messagebox.showinfo("No Chambers", f"No {chamber_type} chambers found.")
+                return
+            
+            # Create details dialog
+            self._create_chamber_details_dialog(chambers, chamber_type)
+            
+        except Exception as e:
+            self.logger.error(f"Error showing chamber details: {e}")
+            messagebox.showerror("Error", f"Failed to show chamber details: {e}")
+    
+    def _create_chamber_details_dialog(self, chambers, chamber_type: str):
+        """Create a dialog showing detailed chamber information."""
+        import customtkinter as ctk
+        from tkinter import ttk
+        
+        # Create dialog window
+        dialog = ctk.CTkToplevel(self)
+        dialog.title(f"{chamber_type} Chamber Details")
+        dialog.geometry("800x600")
+        dialog.transient(self)
+        dialog.grab_set()
+        
+        # Center dialog
+        dialog.update_idletasks()
+        x = (self.winfo_width() // 2) - (800 // 2) + self.winfo_rootx()
+        y = (self.winfo_height() // 2) - (600 // 2) + self.winfo_rooty()
+        dialog.geometry(f"800x600+{x}+{y}")
+        
+        # Create main frame
+        main_frame = ctk.CTkFrame(dialog)
+        main_frame.pack(fill="both", expand=True, padx=20, pady=20)
+        
+        # Title
+        title_label = ctk.CTkLabel(
+            main_frame,
+            text=f"{chamber_type} Chambers ({len(chambers)} total)",
+            font=ctk.CTkFont(size=20, weight="bold")
+        )
+        title_label.pack(pady=(0, 20))
+        
+        # Create scrollable frame for chamber list
+        scrollable_frame = ctk.CTkScrollableFrame(main_frame)
+        scrollable_frame.pack(fill="both", expand=True)
+        
+        # Add chamber cards
+        for chamber in chambers:
+            self._create_chamber_detail_card(scrollable_frame, chamber)
+        
+        # Close button
+        close_btn = ctk.CTkButton(
+            main_frame,
+            text="Close",
+            command=dialog.destroy,
+            width=100
+        )
+        close_btn.pack(pady=(20, 0))
+    
+    def _create_chamber_detail_card(self, parent, chamber):
+        """Create a detailed card for a single chamber."""
+        import customtkinter as ctk
+        
+        # Main card frame
+        card_frame = ctk.CTkFrame(parent)
+        card_frame.pack(fill="x", padx=10, pady=5)
+        
+        # Header with chamber name and state
+        header_frame = ctk.CTkFrame(card_frame)
+        header_frame.pack(fill="x", padx=10, pady=10)
+        
+        name_label = ctk.CTkLabel(
+            header_frame,
+            text=chamber.name,
+            font=ctk.CTkFont(size=16, weight="bold")
+        )
+        name_label.pack(side="left")
+        
+        state_label = ctk.CTkLabel(
+            header_frame,
+            text=f"State: {chamber.state_manager.current_state.value}",
+            font=ctk.CTkFont(size=12)
+        )
+        state_label.pack(side="right")
+        
+        # Details grid
+        details_frame = ctk.CTkFrame(card_frame)
+        details_frame.pack(fill="x", padx=10, pady=(0, 10))
+        details_frame.grid_columnconfigure((0, 1, 2, 3), weight=1)
+        
+        # Status
+        status_text = chamber.state_manager.current_status.value if chamber.state_manager.current_status else "None"
+        ctk.CTkLabel(details_frame, text="Status:", font=ctk.CTkFont(weight="bold")).grid(row=0, column=0, sticky="w", padx=5, pady=2)
+        ctk.CTkLabel(details_frame, text=status_text).grid(row=0, column=1, sticky="w", padx=5, pady=2)
+        
+        # Connection
+        conn_text = "Connected" if chamber.is_connected else "Disconnected"
+        ctk.CTkLabel(details_frame, text="Connection:", font=ctk.CTkFont(weight="bold")).grid(row=0, column=2, sticky="w", padx=5, pady=2)
+        ctk.CTkLabel(details_frame, text=conn_text).grid(row=0, column=3, sticky="w", padx=5, pady=2)
+        
+        # Work requests
+        active_wr = len(chamber.get_active_work_requests())
+        ctk.CTkLabel(details_frame, text="Active Work Requests:", font=ctk.CTkFont(weight="bold")).grid(row=1, column=0, sticky="w", padx=5, pady=2)
+        ctk.CTkLabel(details_frame, text=str(active_wr)).grid(row=1, column=1, sticky="w", padx=5, pady=2)
+        
+        # State duration
+        duration = chamber.state_manager.get_state_duration()
+        duration_text = f"{duration // 3600:.0f}h {(duration % 3600) // 60:.0f}m"
+        ctk.CTkLabel(details_frame, text="In Current State:", font=ctk.CTkFont(weight="bold")).grid(row=1, column=2, sticky="w", padx=5, pady=2)
+        ctk.CTkLabel(details_frame, text=duration_text).grid(row=1, column=3, sticky="w", padx=5, pady=2)
+        
+        # Telemetry status
+        if chamber.last_telemetry:
+            temp_text = f"{chamber.last_telemetry.temperature:.1f}°C"
+            vacuum_text = f"{chamber.last_telemetry.vacuum_level:.2e} Torr"
+        else:
+            temp_text = "No data"
+            vacuum_text = "No data"
+            
+        ctk.CTkLabel(details_frame, text="Temperature:", font=ctk.CTkFont(weight="bold")).grid(row=2, column=0, sticky="w", padx=5, pady=2)
+        ctk.CTkLabel(details_frame, text=temp_text).grid(row=2, column=1, sticky="w", padx=5, pady=2)
+        ctk.CTkLabel(details_frame, text="Vacuum:", font=ctk.CTkFont(weight="bold")).grid(row=2, column=2, sticky="w", padx=5, pady=2)
+        ctk.CTkLabel(details_frame, text=vacuum_text).grid(row=2, column=3, sticky="w", padx=5, pady=2)
     
     def update_data(self):
         """Update all data displays."""

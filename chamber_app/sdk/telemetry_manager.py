@@ -20,22 +20,22 @@ class TelemetrySource(ABC):
     @abstractmethod
     async def connect(self) -> bool:
         """Connect to the telemetry source."""
-        pass
+        raise NotImplementedError("Subclasses must implement connect method")
     
     @abstractmethod
     async def disconnect(self):
         """Disconnect from the telemetry source."""
-        pass
+        raise NotImplementedError("Subclasses must implement disconnect method")
     
     @abstractmethod
     async def get_metrics(self, chamber_id: str) -> Optional[ChamberMetrics]:
         """Get current metrics for a chamber."""
-        pass
+        raise NotImplementedError("Subclasses must implement get_metrics method")
     
     @abstractmethod
     def is_connected(self) -> bool:
         """Check if connected to the source."""
-        pass
+        raise NotImplementedError("Subclasses must implement is_connected method")
 
 
 class GrafanaTelemetrySource(TelemetrySource):

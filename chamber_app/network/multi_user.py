@@ -330,8 +330,7 @@ class MultiUserManager:
                 'new_state': new_state,
                 'reason': reason,
                 'user': self.active_sessions[user_id].username if user_id in self.active_sessions else user_id
-            },
-            timestamp=datetime.now(),
+            },            timestamp=datetime.now(),
             user_id=user_id
         )
         
@@ -340,18 +339,73 @@ class MultiUserManager:
     
     async def _handle_work_request(self, user_id: str, message: Dict[str, Any]):
         """Handle work request message."""
-        # Similar to other handlers - validate and broadcast
-        pass
+        try:
+            action = message.get('action')
+            work_request_data = message.get('data', {})
+            
+            if action in ['create', 'update', 'delete', 'status_change']:
+                # Validate the work request data
+                if 'id' in work_request_data or action == 'create':
+                    # Create sync message for work request update
+                    sync_message = SyncMessage(
+                        message_type='work_request_update',
+                        chamber_id=work_request_data.get('chamber_id', ''),
+                        data={
+                            'action': action,
+                            'work_request': work_request_data
+                        },
+                        timestamp=datetime.now(),
+                        user_id=user_id
+                    )
+                    
+                    # Add to message queue for broadcasting
+                    await self.message_queue.put(sync_message)
+                    self.logger.info(f"Queued work request {action} from user {user_id}")
+                else:
+                    self.logger.warning(f"Invalid work request data from user {user_id}")
+            else:
+                self.logger.warning(f"Unknown work request action '{action}' from user {user_id}")
+                
+        except Exception as e:
+            self.logger.error(f"Error handling work request message from {user_id}: {e}")
     
     async def _handle_user_join(self, user_id: str, message: Dict[str, Any]):
         """Handle user join message."""
-        # Already handled in connection setup
-        pass
+        # Create sync message for user join
+        try:
+            user_info = message.get('user_info', {})
+            sync_message = SyncMessage(
+                message_type='user_joined',
+                chamber_id='',
+                data={
+                    'user_id': user_id,
+                    'user_info': user_info
+                },
+                timestamp=datetime.now(),
+                user_id=user_id
+            )
+            
+            await self.message_queue.put(sync_message)
+            self.logger.info(f"Queued user join for {user_id}")
+        except Exception as e:
+            self.logger.error(f"Error handling user join for {user_id}: {e}")
     
     async def _handle_user_leave(self, user_id: str, message: Dict[str, Any]):
         """Handle user leave message."""
-        # Already handled in connection cleanup
-        pass
+        # Create sync message for user leave
+        try:
+            sync_message = SyncMessage(
+                message_type='user_left',
+                chamber_id='',
+                data={'user_id': user_id},
+                timestamp=datetime.now(),
+                user_id=user_id
+            )
+            
+            await self.message_queue.put(sync_message)
+            self.logger.info(f"Queued user leave for {user_id}")
+        except Exception as e:
+            self.logger.error(f"Error handling user leave for {user_id}: {e}")
     
     async def _handle_heartbeat(self, user_id: str, message: Dict[str, Any]):
         """Handle heartbeat message."""
