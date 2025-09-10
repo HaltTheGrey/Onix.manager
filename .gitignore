@@ -129,10 +129,18 @@ dmypy.json
 .pyre/
 
 # Application specific files
-data/*.db
-data/*.db-*
-logs/*.log
-logs/*.log.*
+data/**
+!data/.gitkeep
+logs/**
+!logs/.gitkeep
+*.db
+*.sqlite
+*.log
+
+# Environment configuration (keep template)
+.env
+*.env
+!.env.example
 
 # Ignore live database and log changes
 data/chambers.db
@@ -159,7 +167,3 @@ Thumbs.db
 *.temp
 *.bak
 *.backup
-
-# Environment configuration (keep template)
-.env
-!.env.example
